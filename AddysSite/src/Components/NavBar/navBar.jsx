@@ -23,12 +23,13 @@ export default function DrawerNavigation() {
   const list = () => (
     <List>
       {[
+        { text: 'Home', link: '/'},
         { text:'By The Dozen', sublist: ['Cookies', 'Brownies', 'Cupcakes', 'Blondies'], link: '/byTheDozen'}, 
         { text: 'Cake Goodness',sublist: ['Cheesecakes', 'Cakes', 'Pies'], link: '/cakeGoodness',},
         { text: 'Delicious Breads', sublist:['Bread Loaves', 'Muffins'], link: '/deliciousBreads',},
         { text: 'Misc', sublist:['Candies', 'Fudge', 'Cinnamon Rolls', 'Strudel', 'Bars'], link: '/marvelousMiscellaneous',},
       ].map((item) => (
-        <ListItem key={item.text} button component={Link} to={item.link}>
+        <ListItem key={item.text} onClick={toggleDrawer(false)} component={Link} to={item.link}>
           <ListItemButton>
             <ListItemText primary={item.text} />
           </ListItemButton>
@@ -38,8 +39,10 @@ export default function DrawerNavigation() {
   );
 
   return (
-    <div>
-      <Button onClick={toggleDrawer(true)}>Open Left</Button>
+    <div className="navBar_drawer">
+      <div className="navBar_button">
+        <Button onClick={toggleDrawer(true)}>Menu</Button>
+      </div>
       <Drawer
         anchor='left'
         open={state.left}
